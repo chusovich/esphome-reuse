@@ -1,0 +1,5 @@
+mqtt:
+  broker: 192.168.10.167
+  username: !secret mqtt_username
+  password: !secret mqtt_password
+  log_topic: ${device_name}/logs

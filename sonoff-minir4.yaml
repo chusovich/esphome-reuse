@@ -13,16 +13,6 @@ esp32:
 # Enable logging
 logger:
 
-# Enable fallback hotspot (captive portal) in case wifi connection fails
-  ap:
-    ssid: ${device_name} Fallback Hotspot
-    password: ""
-
-captive_portal:
-
-web_server:
-  port: 80
-
 sensor:
   - platform: wifi_signal
     name: ${device_name} Wifi Signal Strength

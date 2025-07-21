@@ -1,0 +1,6 @@
+# Example configuration entry
+ota:
+  - platform: esphome
+    password: !secret ota_password
+
+captive_portal:
