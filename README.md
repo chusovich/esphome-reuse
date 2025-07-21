@@ -1,7 +1,7 @@
 # esphome-reuse
 all of the .yaml files I use for my esphome setup (wifi configs, MQTT configs, sensor configs, Sonoff configs, etc.)
 
-I use ESPHome without home assistant. Everything goes through MQTT.0
+I use ESPHome without home assistant. Everything goes through MQTT
 
 ## Files Descriptions
 ### Generic Config
