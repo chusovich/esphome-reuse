@@ -1,3 +1,6 @@
+wifi:
   ap:
-    ssid: "${device_name} Fallback Hotspot"
+    # AP will have the devices same as the SSID name
     password: !secret ap_password
+
+captive_portal:

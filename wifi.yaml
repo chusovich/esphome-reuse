@@ -1,16 +1,10 @@
+# Wifi network setup
 # see https://esphome.io/components/wifi.html#
 
 wifi:
   networks:
     - ssid: !secret wifi_ssid
       password: !secret wifi_password
-
-  # AP will have the devices same as the SSID name
-  ap:
-    password: !secret ap_password
-
-captive_portal:
-
 
 # WiFi diagnostics
 
@@ -24,7 +18,7 @@ sensor:
     entity_category: "diagnostic"
 
   - platform: copy # Reports the WiFi signal strength in %
-    source_id: wifi_signal_percent
+    source_id: wifi_signal_db
     name: "WiFi Signal Percent"
     filters:
       - lambda: return min(max(2 * (x + 100.0), 0.0), 100.0);
@@ -33,21 +27,11 @@ sensor:
     device_class: ""
 
   - platform: uptime
-    source_id: uptime_sensor
-    name: ${device_name} Uptime
+    name: "Uptime"
+    id: uptime_sensor
     update_interval: 60s
     entity_category: "diagnostic"
 
-interval:
-  - interval: 20s
-    then:
-      - mqtt.publish_json:
-          topic: "${device_name}/diagnosics"
-          payload: |-
-            root["uptime"] = id(uptime_sensor).state;
-            root["wifi-signal-strength"] = id(wifi_signal_db).state;
-
-# https://esphome.io/components/text_sensor/wifi_info.html
 text_sensor:
   - platform: wifi_info
     ssid:
@@ -56,3 +40,5 @@ text_sensor:
       name: IP Address
     dns_address:
       name: DNS Address
+    mac_address:
+      name: MAC Address
