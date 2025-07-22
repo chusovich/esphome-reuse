@@ -1,4 +1,0 @@
-# Example configuration entry
-ota:
-  - platform: esphome
-    password: ${ota_password}

@@ -1,6 +1,0 @@
-wifi:
-  ap:
-    # AP will have the devices same as the SSID name
-    password: ${ap_password}
-
-captive_portal:

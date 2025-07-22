@@ -1,15 +1,36 @@
-# Wifi network setup
-# see https://esphome.io/components/wifi.html#
+# MQTT
+mqtt:
+  broker: 192.168.10.167
+  username: ${mqtt_username}
+  password: ${mqtt_password}
+  log_topic: ${device_name}/logs
 
+# OTA Updates
+ota:
+  - platform: esphome
+    password: ${ota_password}
+
+# Wifi
+# see https://esphome.io/components/wifi.html#
 wifi:
   networks:
     - ssid: ${wifi_ssid}
       password: ${wifi_password}
+  ap:
+    ssid: ${device_name}
+    password: ${ap_password}
+
+captive_portal: # see https://esphome.io/components/captive_portal.html#captive-portal
+
+# Web Server
+web_server:
+  port: 80
+  auth:
+    username: ${web_server_username}
+    password: ${web_server_password}
 
 # WiFi diagnostics
-
 # https://esphome.io/components/sensor/wifi_signal.html
-# Example configuration entry with 2 sensors and filter
 sensor:
   - platform: wifi_signal # Reports the WiFi signal strength/RSSI in dB
     name: "WiFi Signal dB"
