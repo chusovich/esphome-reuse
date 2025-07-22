@@ -1,0 +1,8 @@
+sensor:
+  - platform: aht10
+    variant: AHT20
+    temperature:
+      name: "Temperature"
+    humidity:
+      name: "Humidity"
+    update_interval: ${sensor_update_interval}
