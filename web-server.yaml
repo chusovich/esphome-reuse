@@ -2,5 +2,5 @@
 web_server:
   port: 80
   auth:
-    username: !secret web_server_username
-    password: !secret web_server_password
+    username: ${web_server_username}
+    password: ${}web_server_password
