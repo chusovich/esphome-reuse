@@ -24,7 +24,7 @@ sensor:
     entity_category: "diagnostic"
 
   - platform: copy # Reports the WiFi signal strength in %
-    source_id: wifi_signal_db
+    source_id: wifi_signal_percent
     name: "WiFi Signal Percent"
     filters:
       - lambda: return min(max(2 * (x + 100.0), 0.0), 100.0);
@@ -33,14 +33,19 @@ sensor:
     device_class: ""
 
   - platform: uptime
+    source_id: uptime_sensor
     name: ${device_name} Uptime
     update_interval: 60s
     entity_category: "diagnostic"
-    on_value:
-        - mqtt.publish_json:
-            topic: "${device_name}/sensors/uptime"
-            payload: |-
-              root["OutsideTemp"] = id(outside_temp).state;s/uptime"
+
+interval:
+  - interval: 20s
+    then:
+      - mqtt.publish_json:
+          topic: "${device_name}/diagnosics"
+          payload: |-
+            root["uptime"] = id(uptime_sensor).state;
+            root["wifi-signal-strength"] = id(wifi_signal_db).state;
 
 # https://esphome.io/components/text_sensor/wifi_info.html
 text_sensor:
