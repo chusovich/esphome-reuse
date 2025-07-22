@@ -1,0 +1,22 @@
+# Example configuration entry
+# https://esphome.io/components/sensor/veml7700.html
+sensor:
+  - platform: veml7700
+    address: 0x10
+    update_interval: 20s
+
+    # sensors 
+    ambient_light:
+      name: "Ambient Light"
+    full_spectrum:
+      name: "Full Spectrum"
+    infrared:
+      name: "Infared"
+    ambient_light_counts:
+      name: "Ambient Light Counts"
+    full_spectrum_counts:
+      name: "Full Spectrum Counts"
+    actual_gain:
+      name: "Actual gain"
+    actual_integration_time:
+      name: "Actual Integration Time"
