@@ -70,6 +70,14 @@ switch:
     pin: GPIO12
     id: relay
     restore_mode: ALWAYS_OFF # Powering the relay may cause damage or instability when the programmer is supplying Vcc.
+    on_turn_on:
+    - mqtt.publish:
+        topic: ${device_name}/switch/relay/state
+        payload: "ON"
+    on_turn_off:
+    - mqtt.publish:
+        topic: ${device_name}/switch/relay/state
+        payload: "OFF"
 
 time:
   - platform: sntp #(required for total_daily_energy)
