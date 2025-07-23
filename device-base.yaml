@@ -24,6 +24,7 @@ captive_portal: # see https://esphome.io/components/captive_portal.html#captive-
 
 # Web Server
 web_server:
+  version: 3
   port: 80
   auth:
     username: ${web_server_username}
