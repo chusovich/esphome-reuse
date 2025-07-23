@@ -1,5 +1,7 @@
 sensor:
   - platform: sht4x
+    update_interval: ${sensor_update_interval}
+    
     temperature:
       name: "Temperature"
       id: sht4x_temp
@@ -10,3 +12,4 @@ sensor:
     humidity:
       name: "Relative Humidity"
       id: sht4x_hum
+
