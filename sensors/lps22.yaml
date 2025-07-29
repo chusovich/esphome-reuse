@@ -1,0 +1,9 @@
+sensor:
+  - platform: lps22
+    update_interval: ${sensor_update_interval}
+    temperature:
+      name: "Temperature"
+      id: lps22_temp
+    pressure:
+      name: "Pressure"
+      id: lps22_press
