@@ -58,9 +58,13 @@ text_sensor:
   - platform: wifi_info
     ssid:
       name: Connected SSID
+      update_interval: 60s
     ip_address:
       name: IP Address
+      update_interval: 60s
     dns_address:
       name: DNS Address
+      update_interval: 60s
     mac_address:
       name: MAC Address
+      update_interval: 60s

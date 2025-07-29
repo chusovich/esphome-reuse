@@ -1,14 +1,12 @@
 sensor:
   - platform: sht4x
     update_interval: ${sensor_update_interval}
-    
     temperature:
       name: "SHT4X Temperature"
       id: sht4x_temp
       filters:
         - lambda: return x * (9.0/5.0) + 32.0;
       unit_of_measurement: "°F"
-      
     humidity:
       name: "SHT4X Relative Humidity"
       id: sht4x_hum

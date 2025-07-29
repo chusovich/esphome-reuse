@@ -4,7 +4,6 @@ sensor:
   - platform: veml7700
     address: 0x10
     update_interval: ${sensor_update_interval}
-    
     # sensors 
     ambient_light:
       name: "Ambient Light"

@@ -2,15 +2,13 @@ sensor:
   - platform: aht10
     variant: AHT20
     update_interval: ${sensor_update_interval}
-    
     temperature:
-      name: "Temperature"
+      name: "AHT2x Temperature"
       id: aht2x_temp
       filters:
         - lambda: return x * (9.0/5.0) + 32.0;
       unit_of_measurement: "°F"
-      
     humidity:
-      name: "Relative Humidity"
+      name: "AHT2x Relative Humidity"
       id: aht2x_hum
       
