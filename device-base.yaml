@@ -67,4 +67,3 @@ text_sensor:
       update_interval: 60s
     mac_address:
       name: MAC Address
-      update_interval: 60s
