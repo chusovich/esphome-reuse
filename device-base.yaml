@@ -10,18 +10,6 @@ ota:
   - platform: esphome
     password: ${ota_password}
 
-# Wifi
-# see https://esphome.io/components/wifi.html#
-wifi:
-  networks:
-    - ssid: ${wifi_ssid}
-      password: ${wifi_password}
-  ap:
-    ssid: ${device_name}
-    password: ${ap_password}
-
-captive_portal: # see https://esphome.io/components/captive_portal.html#captive-portal
-
 # Web Server
 web_server:
   version: 3
@@ -30,40 +18,4 @@ web_server:
     username: ${web_server_username}
     password: ${web_server_password}
 
-# WiFi diagnostics
-# https://esphome.io/components/sensor/wifi_signal.html
-sensor:
-  - platform: wifi_signal # Reports the WiFi signal strength/RSSI in dB
-    name: "WiFi Signal dB"
-    id: wifi_signal_db
-    update_interval: 60s
-    entity_category: "diagnostic"
-
-  - platform: copy # Reports the WiFi signal strength in %
-    source_id: wifi_signal_db
-    name: "WiFi Signal Percent"
-    filters:
-      - lambda: return min(max(2 * (x + 100.0), 0.0), 100.0);
-    unit_of_measurement: "Signal %"
-    entity_category: "diagnostic"
-    device_class: ""
-
-  - platform: uptime
-    name: "Uptime"
-    id: uptime_sensor
-    update_interval: 60s
-    entity_category: "diagnostic"
-
-text_sensor:
-  - platform: wifi_info
-    ssid:
-      name: Connected SSID
-      update_interval: 60s
-    ip_address:
-      name: IP Address
-      update_interval: 60s
-    dns_address:
-      name: DNS Address
-      update_interval: 60s
-    mac_address:
-      name: MAC Address
+logger:
