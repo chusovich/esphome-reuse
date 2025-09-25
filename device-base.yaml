@@ -19,3 +19,5 @@ web_server:
     password: ${web_server_password}
 
 logger:
+
+prometheus:
