@@ -21,3 +21,10 @@ web_server:
 logger:
 
 prometheus:
+
+sensor:
+  - platform: uptime
+    name: "Uptime"
+    id: uptime_sensor
+    update_interval: 20s
+    entity_category: "diagnostic"
