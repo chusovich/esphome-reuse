@@ -28,12 +28,6 @@ sensor:
     entity_category: "diagnostic"
     device_class: ""
 
-  - platform: uptime
-    name: "Uptime"
-    id: uptime_sensor
-    update_interval: 60s
-    entity_category: "diagnostic"
-
 text_sensor:
   - platform: wifi_info
     ssid:
