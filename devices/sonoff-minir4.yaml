@@ -6,6 +6,8 @@ esphome:
   friendly_name: ${device_name}
   comment: "Sonoff MiniR4 Extreme"
 
+logger:
+
 esp32:
   board: esp32dev
   framework:
