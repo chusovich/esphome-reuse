@@ -4,6 +4,7 @@ mqtt:
   username: ${mqtt_username}
   password: ${mqtt_password}
   log_topic: ${device_name}/logs
+  reboot_timeout: 0s
 
 # OTA Updates
 ota:
