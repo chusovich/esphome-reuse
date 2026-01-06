@@ -19,7 +19,7 @@ web_server:
     username: ${web_server_username}
     password: ${web_server_password}
 
-logger:
+# logger:
 
 prometheus:
 
