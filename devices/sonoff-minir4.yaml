@@ -3,6 +3,7 @@ substitutions:
 
 esphome:
   name: ${device_name}
+  friendly_name: ${device_name}
   comment: "Sonoff MiniR4 Extreme"
 
 esp32:
@@ -10,33 +11,7 @@ esp32:
   framework:
     type: arduino
 
-# Enable logging
-logger:
-
-sensor:
-  - platform: wifi_signal
-    name: ${device_name} Wifi Signal Strength
-    update_interval: 90s
-    entity_category: "diagnostic"
-
-  - platform: uptime
-    name: ${device_name} Uptime
-    update_interval: 300s
-    entity_category: "diagnostic"
-
-text_sensor:
-  - platform: wifi_info
-    ssid:
-      name: Connected SSID
-    ip_address:
-      name: IP Address
-    dns_address:
-      name: DNS Address
-
-#######################################
-# Device specific Config Begins Below #
-#######################################
-
+# --- Device specific config ---
 status_led:
   pin:
     number: GPIO19
