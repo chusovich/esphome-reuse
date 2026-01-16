@@ -1,6 +1,6 @@
 # MQTT
 mqtt:
-  broker: 192.168.10.167
+  broker: ${mqtt_broker_ip}
   username: ${mqtt_username}
   password: ${mqtt_password}
   log_topic: ${device_name}/logs
