@@ -19,6 +19,7 @@ uart:
 
 binary_sensor:
   - platform: gpio
+    id: button
     pin:
       number: GPIO0
       mode: INPUT_PULLUP
