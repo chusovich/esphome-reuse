@@ -1,15 +1,25 @@
-# MQTT
-mqtt:
-  broker: ${mqtt_broker_ip}
-  username: ${mqtt_username}
-  password: ${mqtt_password}
-  log_topic: ${device_name}/logs
-  reboot_timeout: 0s
+# # MQTT
+# mqtt:
+#   broker: ${mqtt_broker_ip}
+#   username: ${mqtt_username}
+#   password: ${mqtt_password}
+#   log_topic: ${device_name}/logs
+#   reboot_timeout: 0s
+
+# Enable logging
+logger:
+
+#  Home Assistant API
+api:
+  encryption:
+    key: ${api_key}
 
 # OTA Updates
 ota:
   - platform: esphome
     password: ${ota_password}
+
+captive_portal:
 
 # Web Server
 web_server:
@@ -19,10 +29,13 @@ web_server:
     username: ${web_server_username}
     password: ${web_server_password}
 
-# logger:
+# Enable logging
+logger:
 
+# Prometheus Exporter
 prometheus:
 
+# Uptime Sensor
 sensor:
   - platform: uptime
     name: "Uptime"
