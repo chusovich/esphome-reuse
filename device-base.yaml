@@ -6,9 +6,6 @@
 #   log_topic: ${device_name}/logs
 #   reboot_timeout: 0s
 
-# Enable logging
-logger:
-
 #  Home Assistant API
 api:
   encryption:
