@@ -25,7 +25,7 @@ web_server:
     password: ${web_server_password}
 
 # Enable logging
-logger:
+# logger:
 
 # Prometheus Exporter
 prometheus:
