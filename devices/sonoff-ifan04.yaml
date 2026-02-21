@@ -1,17 +1,7 @@
-substitutions:
-  devicename: ifan04
-  friendly_devicename: iFan04
-  fan_startup_boost_time: 5s
-  # Morse codes for the different buzzer sounds
-  code_buzzer_on:  "E"    # .
-  code_buzzer_off: "I"    # ..
-  code_fan_off:    "T"    # -
-  code_fan_1:      "N"    # -.
-  code_fan_2:      "D"    # -..
-  code_fan_3:      "B"    # -...
-  code_rc_unpair:  "O"    # ---
-  code_short:      "E"    # .
-  code_long:       "T"    # -
+esphome:
+  name: ${device_name}
+  friendly_name: ${device_name}
+  comment: "Sonoff S31"
 
 external_components:
   - source:
@@ -20,17 +10,6 @@ external_components:
   - source:
       type: git
       url: https://github.com/rh1rich/esphome-morse-code
-
-esphome:
-  project:
-    name: "rh1rich.iFan04"
-    version: "1.0.0"
-  name: $devicename
-  friendly_name: $friendly_devicename
-  on_boot:
-    priority: 600
-    then:
-      - output.turn_off: buzzer
 
 esp8266:
   board: esp8285
@@ -71,12 +50,6 @@ uart:
   rx_pin: GPIO03
   baud_rate: 9600
   id: uart_bus
-
-# I2C via the test points TP10 (= GPIO05) and TP11 (= GPIO04) on the PCB.
-# i2c:
-#   sda: GPIO04
-#   scl: GPIO05
-#   frequency: 200kHz
 
 output:
   - platform: gpio
@@ -151,10 +124,6 @@ output:
                 id: fan_speed_set
                 speed: 3
 
-morse_code:
-  output: buzzer
-  dit_duration: 50
-
 light:
   - platform: binary
     name: 'Light'
@@ -223,191 +192,3 @@ binary_sensor:
     id: rc_button_rf_long
     filters:
       - delayed_off: 300ms
-
-# Remote commands via UART0
-#  RX: GPIO03
-#
-# The numbering of the following remote control buttons
-# starts with the top left button (1) and ends with the
-# bottom right button (8).
-#
-# 1 (Light)           = (AA55) 0104 000104 (0A)
-# 2 (Mute)            = (AA55) 0106 000101 (09)
-# 3 (Fan high)        = (AA55) 0104 000103 (09)
-# 4 (Fan mid)         = (AA55) 0104 000102 (08)
-# 5 (Fan off)         = (AA55) 0104 000100 (06)
-# 6 (Fan low)         = (AA55) 0104 000101 (07)
-# 7 (RF Clearing)     = (AA55) 0101 000102 (05)
-# 7 (RF Clearing 5s)  = (AA55) 0107 000101 (0A) clears the connection between remote control and receiver!!
-# 8 (WiFi Pairing)    = (AA55) 0101 000102 (05)
-# 8 (WiFi Pairing 5s) = (AA55) 0101 000101 (04)
-
-ifan_remote:
-  on_command:
-    then:
-      # - logger.log:
-      #     format: "RC command '%04X:%06X' received."
-      #     args: [ 'command.high','command.low' ]
-      - if:
-          condition:
-            lambda: return (command.high == 0x0104 && command.low == 0x000100);
-          then:
-            - fan.turn_off: fan_comp
-      - if:
-          condition:
-            lambda: return (command.high == 0x0104 && command.low == 0x000101);
-          then:
-            - fan.turn_on:
-                id: fan_comp
-                speed: 1
-      - if:
-          condition:
-            lambda: return (command.high == 0x0104 && command.low == 0x000102);
-          then:
-            - fan.turn_on:
-                id: fan_comp
-                speed: 2
-      - if:
-          condition:
-            lambda: return (command.high == 0x0104 && command.low == 0x000103);
-          then:
-            - fan.turn_on:
-                id: fan_comp
-                speed: 3
-      - if:
-          condition:
-            lambda: return (command.high == 0x0104 && command.low == 0x000104);
-          then:
-            - if:
-                condition:
-                  lambda: return id(light_enabled).state;
-                then:
-                  - light.toggle: light_comp
-                else:
-                  - if:
-                      condition:
-                        lambda: return id(buzzer_enabled).state;
-                      then:
-                        - morse_code.start: $code_short
-                  - binary_sensor.template.publish:
-                      id: rc_button_light
-                      state: ON
-                  - binary_sensor.template.publish:
-                      id: rc_button_light
-                      state: OFF
-      - if:
-          condition:
-            lambda: return (command.high == 0x0106 && command.low == 0x000101);
-          then:
-            - switch.toggle: buzzer_enabled
-      - if:
-          condition:
-            lambda: return (command.high == 0x0101 && command.low == 0x000102);
-          then:
-            - if:
-                condition:
-                  lambda: return id(buzzer_enabled).state;
-                then:
-                  - morse_code.start: $code_short
-            - binary_sensor.template.publish:
-                id: rc_button_rfwifi
-                state: ON
-            - binary_sensor.template.publish:
-                id: rc_button_rfwifi
-                state: OFF
-      - if:
-          condition:
-            lambda: return (command.high == 0x0101 && command.low == 0x000101);
-          then:
-            - if:
-                condition:
-                  lambda: return id(buzzer_enabled).state;
-                then:
-                  - morse_code.start: $code_long
-            - binary_sensor.template.publish:
-                id: rc_button_wifi_long
-                state: ON
-            - binary_sensor.template.publish:
-                id: rc_button_wifi_long
-                state: OFF
-      - if:
-          condition:
-            lambda: return (command.high == 0x0107 && command.low == 0x000101);
-          then:
-            - morse_code.start: $code_rc_unpair
-            - binary_sensor.template.publish:
-                id: rc_button_rf_long
-                state: ON
-            - binary_sensor.template.publish:
-                id: rc_button_rf_long
-                state: OFF
-
-text_sensor:
-  - platform: version
-    name: 'ESPHome Version'
-    entity_category: diagnostic
-  - platform: wifi_info
-    ip_address:
-      name: WiFi IP Address
-      entity_category: diagnostic
-    ssid:
-      name: WiFi SSID
-      entity_category: diagnostic
-    mac_address:
-      name: WiFi MAC Address
-      entity_category: diagnostic
-    dns_address:
-      name: WiFi DNS Address
-      entity_category: diagnostic
-
-globals:
-  - id: last_fan_speed
-    type: int
-    restore_value: no
-    initial_value: "0"
-
-script:
-  - id: fan_speed_set
-    mode: restart
-    parameters:
-      speed: int
-    then:
-      - if:
-          condition:
-            lambda: return (speed == 0);
-          then:
-            - output.turn_off: fan_relay_1
-            - output.turn_off: fan_relay_2
-            - output.turn_off: fan_relay_3
-          else:
-            - if:
-                condition:
-                  lambda: return (id(fan_boost_enabled).state && (id(last_fan_speed) == 0));
-                then:
-                  - output.turn_off: fan_relay_1
-                  - output.turn_off: fan_relay_2
-                  - output.turn_on: fan_relay_3
-                  - delay: $fan_startup_boost_time
-            - if:    # enable cap 1
-                condition:
-                  lambda: return (speed == 1);
-                then:
-                  - output.turn_on: fan_relay_1
-                  - output.turn_off: fan_relay_2
-                  - output.turn_off: fan_relay_3
-            - if:    # enable cap 1 & 2
-                condition:
-                  lambda: return (speed == 2);
-                then:
-                  - output.turn_on: fan_relay_1
-                  - output.turn_on: fan_relay_2
-                  - output.turn_off: fan_relay_3
-            - if:    # no caps
-                condition:
-                  lambda: return (speed == 3);
-                then:
-                  - output.turn_off: fan_relay_1
-                  - output.turn_off: fan_relay_2
-                  - output.turn_on: fan_relay_3
-      - lambda: |-
-          id(last_fan_speed) = speed;
