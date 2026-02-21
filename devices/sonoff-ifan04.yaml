@@ -42,6 +42,3 @@ uart:
   rx_pin: GPIO03
   baud_rate: 9600
   id: uart_bus
-    id: rc_button_rf_long
-    filters:
-      - delayed_off: 300ms
