@@ -5,8 +5,8 @@ esphome:
 esp8266:
   board: esp12e
   early_pin_init: false
+  restore_from_flash: false # Set to true to use one of the switch's RESTORE_X restore_mode options
 
-# Device Specific Config
 logger:
   baud_rate: 0 # (UART logging interferes with cse7766)
   logs:
@@ -19,58 +19,60 @@ uart:
 
 binary_sensor:
   - platform: gpio
-    id: button
     pin:
       number: GPIO0
       mode: INPUT_PULLUP
       inverted: True
-    name: "Button"
+    name: "Sonoff S31 Button"
     on_press:
       - switch.toggle: relay
   - platform: status
-    name: "Status"
+    name: "Sonoff S31 Status"
 
 sensor:
+  - platform: wifi_signal
+    name: "Sonoff S31 WiFi Signal"
+    update_interval: 60s
   - platform: cse7766
     current:
-      name: "Current"
+      name: "Sonoff S31 Current"
       accuracy_decimals: 2
       filters:
         - throttle_average: 60s
     voltage:
-      name: "Voltage"
+      name: "Sonoff S31 Voltage"
       accuracy_decimals: 2
       filters:
         - throttle_average: 60s
     power:
-      name: "Power"
+      name: "Sonoff S31 Power"
       accuracy_decimals: 2
       id: my_power
       filters:
         - throttle_average: 60s
     energy:
-      name: "Energy"
+      name: "Sonoff S31 Energy"
       accuracy_decimals: 2
       filters:
         - throttle: 60s
     apparent_power: #(only available with version 2024.3.0 or greater)
-      name: "Apparent Power"
+      name: "Sonoff S31 Apparent Power"
       filters:
         - throttle_average: 60s
     power_factor: #(only available with version 2024.3.0 or greater)
-      name: "Power Factor"
+      name: "Sonoff S31 Power Factor"
       accuracy_decimals: 2
       filters:
         - throttle_average: 60s
 
   - platform: total_daily_energy #(Optional, not specific to cse7766)
-    name: "Daily Energy"
+    name: "Sonoff S31 Daily Energy"
     power_id: my_power
     accuracy_decimals: 2
 
 switch:
   - platform: gpio
-    name: "Relay"
+    name: "Sonoff S31 Relay"
     pin: GPIO12
     id: relay
     restore_mode: ALWAYS_OFF # Powering the relay may cause damage or instability when the programmer is supplying Vcc.
