@@ -81,11 +81,6 @@ api:
 # GPIO14 ... Fan Relay 1 (D5, 2.5uF cap on IFAN04-H)
 # GPIO15 ... Fan Relay 3 (D13, no cap)
 
-status_led:
-  pin:
-    number: GPIO13
-    inverted: true
-
 # UART0 (GPIO03) is used by the RF-receiver to send the received RF-commands
 # to the ESP.
 uart:
