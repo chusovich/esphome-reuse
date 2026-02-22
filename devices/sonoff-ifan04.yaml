@@ -2,6 +2,13 @@ esphome:
   name: ${device_name}
   friendly_name: ${device_name}
   comment: "Sonoff iFan04"
+  on_boot:
+    - priority: 600
+      then:
+        - output.turn_off: buzzer
+        - globals.set: # needed to disable actions on switch initialization (state restore
+            id: switches_initialized
+            value: "true"
 
 esp8266:
   board: esp8285
@@ -52,19 +59,8 @@ external_components:
       type: git
       url: https://github.com/rh1rich/esphome-morse-code
 
-esphome:
-  on_boot:
-    - priority: 600
-      then:
-        - output.turn_off: buzzer
-        - globals.set: # needed to disable actions on switch initialization (state restore
-            id: switches_initialized
-            value: "true"
-
-# Enable Home Assistant API
+# Home Assistant API
 api:
-  # Setting reboot timeout to 0 seconds to disable the automatic reboot, if no api connection (Home Assistant server).
-  # This is essential for offline usage.
   actions:
     - action: play_morse_code
       variables:
