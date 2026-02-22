@@ -1,11 +1,3 @@
-# # MQTT
-# mqtt:
-#   broker: ${mqtt_broker_ip}
-#   username: ${mqtt_username}
-#   password: ${mqtt_password}
-#   log_topic: ${device_name}/logs
-#   reboot_timeout: 0s
-
 #  Home Assistant API
 api:
   encryption:
