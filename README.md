@@ -1,12 +1,12 @@
 # esphome-reuse
-all of the .yaml files I use for my esphome setup (wifi configs, MQTT configs, sensor configs, Sonoff configs, etc.)
+all of the .yaml files I use for my esphome setup (wifi configs, sensor configs, Sonoff configs, etc.)
 
-I use ESPHome without home assistant. Everything goes through MQTT
+I use ESPHome with Home Assistant, both deployed via docker containers.
 
 ## Files Descriptions
 ### device-base.yaml
 include base config that all devices use:
-- mqtt
+- api setup
 - ota updates
 - web server
 - uptime sensor
@@ -19,6 +19,6 @@ the base config for a wifi or ethernet connected devices
 - sht4x.yaml: temperature and humdity sensor
 - veml7700.yaml: lux sensor
 ### /devices
-- sonoff-ifan04.yaml
-- sonoff-minir4.yaml:
-- sonoff-s31.yaml:
+- sonoff-ifan04.yaml: Sonoff smart fan controller
+- sonoff-minir4.yaml: Sonoff smart switch
+- sonoff-s31.yaml: Sonoff smart plug
