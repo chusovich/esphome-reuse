@@ -25,7 +25,7 @@ binary_sensor:
       mode:
         input: true
         pullup: true
-        inverted: true
+      inverted: true
     on_press:
       - light.toggle: led_strip
   - platform: status
