@@ -20,17 +20,11 @@ web_server:
 # Prometheus Exporter
 prometheus:
 
-# Diagnostic Sensors
+# Uptime Sensor
 sensor:
   - platform: uptime
     name: "Uptime"
     id: uptime_sensor
-    update_interval: 60s
-    entity_category: diagnostic
-
-  - platform: wifi_signal
-    name: "WiFi Signal"
-    id: wifi_signal_sensor
     update_interval: 60s
     entity_category: diagnostic
 
