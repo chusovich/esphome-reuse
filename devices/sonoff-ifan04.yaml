@@ -353,24 +353,6 @@ ifan_remote:
                 id: rc_button_rf_long
                 state: OFF
 
-text_sensor:
-  - platform: version
-    name: 'ESPHome Version'
-    entity_category: diagnostic
-  - platform: wifi_info
-    ip_address:
-      name: WiFi IP Address
-      entity_category: diagnostic
-    ssid:
-      name: WiFi SSID
-      entity_category: diagnostic
-    mac_address:
-      name: WiFi MAC Address
-      entity_category: diagnostic
-    dns_address:
-      name: WiFi DNS Address
-      entity_category: diagnostic
-
 globals:
   - id: last_fan_speed
     type: int
