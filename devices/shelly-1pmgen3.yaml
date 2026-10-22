@@ -2,8 +2,6 @@ esphome:
   name: ${device_name}
   friendly_name: ${device_name}
   comment: "Shelly 1PM Gen 3"
-  
-esphome:
   platformio_options:
     board_build.mcu: esp32c3
     board_build.variant: esp32c3
@@ -26,7 +24,7 @@ uart:
   baud_rate: 9600
   stop_bits: 1
 
-output:
+switch:
   - id: shelly_1pm_gen3_relay
     platform: gpio
     pin: GPIO4
