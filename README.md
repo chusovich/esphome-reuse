@@ -6,7 +6,7 @@ I use ESPHome with Home Assistant, both deployed via docker containers.
 ## Files
 
 ### `/core`
-include base `core.yaml` config that all devices use:
+contains the base `core.yaml` config that all devices use:
 - api setup
 - ota updates
 - web server
@@ -18,7 +18,7 @@ the base config for a WiFi or ethernet connected devices
 ### `/devices`
 - `atoms3-pwm.yaml`: led strip controller
 - `sonoff-ifan04.yaml`: Sonoff smart fan controller
-- `sonoff-s31.yaml: Sonoff smart plug
+- `sonoff-s31.yaml`: Sonoff smart plug
 - `sonoff-s31-lite.yaml`: Sonoff smart plug w/o power monitoring
 
 ### `/sensors`
