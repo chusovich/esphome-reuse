@@ -15,7 +15,8 @@ esp32:
 
 logger:
   level: ${log_level}
-
+  hardware_uart: uart0
+  
 uart:
   id: bl0942_uart
   tx_pin: GPIO6
