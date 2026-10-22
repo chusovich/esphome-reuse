@@ -1,8 +1,8 @@
-#  Home Assistant API
+# Home Assistant API
 api:
   encryption:
     key: ${api_key}
-  reboot_timeout: 0s
+  reboot_timeout: 15min
 
 # OTA Updates
 ota:
@@ -17,16 +17,41 @@ web_server:
     username: ${web_server_username}
     password: ${web_server_password}
 
-# Enable logging
-# logger:
-
 # Prometheus Exporter
 prometheus:
 
-# Uptime Sensor
+# Web Server
+web_server:
+  version: 3
+  port: 80
+  auth:
+    username: ${web_server_username}
+    password: ${web_server_password}
+
+# Diagnostic Sensors
 sensor:
   - platform: uptime
     name: "Uptime"
     id: uptime_sensor
-    update_interval: 20s
-    entity_category: "diagnostic"
+    update_interval: 60s
+    entity_category: diagnostic
+
+  - platform: wifi_signal
+    name: "WiFi Signal"
+    id: wifi_signal_sensor
+    update_interval: 60s
+    entity_category: diagnostic
+
+# Connectivity Status
+binary_sensor:
+  - platform: status
+    name: "Status"
+    entity_category: diagnostic
+
+# Firmware Version
+text_sensor:
+  - platform: version
+    name: "ESPHome Version"
+    hide_timestamp: true
+    entity_category: diagnostic
+
