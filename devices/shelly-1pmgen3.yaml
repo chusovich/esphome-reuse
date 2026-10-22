@@ -44,6 +44,8 @@ binary_sensor:
     pin: GPIO1
     filters:
       - delayed_off: 50ms
+    on_press:
+      - switch.toggle: shelly_1pm_gen3_relay
 
 sensor:
   - id: temperature
