@@ -1,18 +1,17 @@
 # Wi-Fi
 # https://esphome.io/components/wifi/
-
-wifi:
+wifi:  
   networks:
     - ssid: ${wifi_ssid}
       password: ${wifi_password}
-
-  # Fallback access point
-  ap:
-    ssid: ${device_name}
-    password: ${ap_password}
-
+  fast_connect:
+    enabled: true
+    storage: flash
   ap_timeout: 90s
   min_auth_mode: WPA2
+  
+  # Fallback access point (no password)
+  ap: {}
 
 # Fallback Wi-Fi configuration portal
 # https://esphome.io/components/captive_portal/
