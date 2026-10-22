@@ -1,0 +1,21 @@
+esphome:
+  name: ${device_name}
+  friendly_name: ${device_name}
+  comment: "Axiometa Genesis Mini"
+
+esp32:
+  board: esp32-s3-devkitc-1
+  framework:
+    type: esp-idf  
+
+logger:
+
+light:
+  - platform: esp32_rmt_led_strip
+    channel_colors: GRB
+    pin: GPIO21
+    num_leds: 1
+    chipset: ws2812
+    name: "Onboard LED"
+
+
