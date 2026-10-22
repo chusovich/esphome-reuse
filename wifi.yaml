@@ -7,7 +7,6 @@ wifi:
   fast_connect:
     enabled: true
     storage: flash
-  ap_timeout: 90s
   min_auth_mode: WPA2
   
   # Fallback access point (no password)
