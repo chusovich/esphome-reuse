@@ -7,7 +7,7 @@ api:
 # OTA Updates
 ota:
   - platform: esphome
-    password: ${ota_password}
+    encryption:
 
 # Web Server
 web_server:
