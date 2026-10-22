@@ -1,40 +1,49 @@
-# Wifi
-# see https://esphome.io/components/wifi.html#
+# Wi-Fi
+# https://esphome.io/components/wifi/
+
 wifi:
   networks:
     - ssid: ${wifi_ssid}
       password: ${wifi_password}
+
+  # Fallback access point
   ap:
     ssid: ${device_name}
     password: ${ap_password}
 
-captive_portal: # see https://esphome.io/components/captive_portal.html#captive-portal
+  ap_timeout: 90s
+  min_auth_mode: WPA2
 
-# WiFi diagnostics
-# https://esphome.io/components/sensor/wifi_signal.html
+# Fallback Wi-Fi configuration portal
+# https://esphome.io/components/captive_portal/
+captive_portal:
+
+# Wi-Fi diagnostics
 sensor:
-  - platform: wifi_signal # Reports the WiFi signal strength/RSSI in dB
+  - platform: wifi_signal
     name: "WiFi Signal dB"
     id: wifi_signal_db
     update_interval: 60s
-    entity_category: "diagnostic"
+    entity_category: diagnostic
 
-  - platform: copy # Reports the WiFi signal strength in %
+  - platform: copy
     source_id: wifi_signal_db
     name: "WiFi Signal Percent"
     filters:
       - lambda: return min(max(2 * (x + 100.0), 0.0), 100.0);
-    unit_of_measurement: "Signal %"
-    entity_category: "diagnostic"
-    device_class: ""
+    unit_of_measurement: "%"
+    entity_category: diagnostic
 
+# Network information
 text_sensor:
   - platform: wifi_info
     ssid:
-      name: Connected SSID
+      name: "Connected SSID"
     ip_address:
-      name: IP Address
+      name: "IP Address"
     dns_address:
-      name: DNS Address
+      name: "DNS Address"
     mac_address:
-      name: MAC Address
+      name: "MAC Address"
+    bssid:
+      name: "Connected BSSID"
