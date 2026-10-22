@@ -11,7 +11,7 @@ include base config that all devices use:
 - ota updates
 - web server
 - uptime sensor
-- 
+
 ### `wifi.yaml` / `ethernet.yaml`
 the base config for a wifi or ethernet connected devices
 
