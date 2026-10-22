@@ -50,13 +50,11 @@ binary_sensor:
       - switch.toggle: relay
 
 output:
-
   - platform: gpio
     pin: GPIO4
     id: relay_output
 
 switch:
-
   # Use a template switch to allow for checking fault conditions before switching on the relay output.
   - platform: template
     id: relay
@@ -96,7 +94,6 @@ switch:
             state: OFF
 
 binary_sensor:
-
   - id: error_overtemp
     name: Overheating
     device_class: problem
