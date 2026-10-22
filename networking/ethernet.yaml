@@ -7,3 +7,13 @@ ethernet:
   # interrupt_pin: GPIO15
   cs_pin: GPIO5
   # reset_pin: GPIO26
+
+# Example configuration entry
+text_sensor:
+  - platform: ethernet_info
+    ip_address:
+      name: ESP IP Address
+    dns_address:
+      name: ESP DNS Address
+    mac_address:
+      name: ESP MAC Address
