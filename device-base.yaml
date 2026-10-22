@@ -20,14 +20,6 @@ web_server:
 # Prometheus Exporter
 prometheus:
 
-# Web Server
-web_server:
-  version: 3
-  port: 80
-  auth:
-    username: ${web_server_username}
-    password: ${web_server_password}
-
 # Diagnostic Sensors
 sensor:
   - platform: uptime
@@ -54,4 +46,3 @@ text_sensor:
     name: "ESPHome Version"
     hide_timestamp: true
     entity_category: diagnostic
-
