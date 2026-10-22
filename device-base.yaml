@@ -28,10 +28,10 @@ sensor:
     update_interval: 60s
     entity_category: diagnostic
 
-# Connectivity Status
+# Connection Status
 binary_sensor:
   - platform: status
-    name: "Status"
+    name: "Connection Status"
     entity_category: diagnostic
 
 # Firmware Version
