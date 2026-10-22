@@ -12,7 +12,7 @@ include base config that all devices use:
 - web server
 - uptime sensor
 - 
-### `wifi.yaml` and `ethernet.yaml`
+### `wifi.yaml` / `ethernet.yaml`
 the base config for a wifi or ethernet connected devices
 
 ### `/devices`
