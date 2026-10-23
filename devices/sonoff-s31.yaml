@@ -23,41 +23,36 @@ binary_sensor:
     pin:
       number: GPIO0
       mode: INPUT_PULLUP
-      inverted: True
-    name: "Sonoff S31 Button"
+      inverted: true
+    name: "Button"
     on_press:
       - switch.toggle: relay
-  - platform: status
-    name: "Sonoff S31 Status"
 
 sensor:
-  - platform: wifi_signal
-    name: "Sonoff S31 WiFi Signal"
-    update_interval: 60s
   - platform: cse7766
     current:
-      name: "Sonoff S31 Current"
+      name: "Current"
       accuracy_decimals: 2
       filters:
         - throttle_average: 60s
     voltage:
-      name: "Sonoff S31 Voltage"
+      name: "Voltage"
       accuracy_decimals: 2
       filters:
         - throttle_average: 60s
     power:
-      name: "Sonoff S31 Power"
+      name: "Power"
       accuracy_decimals: 2
       id: my_power
       filters:
         - throttle_average: 60s
     energy:
-      name: "Sonoff S31 Energy"
+      name: "Energy"
       accuracy_decimals: 2
       filters:
         - throttle: 60s
     apparent_power: #(only available with version 2024.3.0 or greater)
-      name: "Sonoff S31 Apparent Power"
+      name: "Apparent Power"
       filters:
         - throttle_average: 60s
     power_factor: #(only available with version 2024.3.0 or greater)
@@ -67,15 +62,15 @@ sensor:
         - throttle_average: 60s
 
   - platform: total_daily_energy #(Optional, not specific to cse7766)
-    name: "Sonoff S31 Daily Energy"
+    name: "Daily Energy"
     power_id: my_power
     accuracy_decimals: 2
 
 switch:
   - platform: gpio
-    name: "Sonoff S31 Relay"
-    pin: GPIO12
+    name: "Relay"
     id: relay
+    pin: GPIO12
     restore_mode: ALWAYS_OFF # Powering the relay may cause damage or instability when the programmer is supplying Vcc.
 
 time:
@@ -85,4 +80,4 @@ time:
 status_led:
   pin:
     number: GPIO13
-    inverted: True
+    inverted: true
