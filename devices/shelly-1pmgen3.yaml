@@ -51,9 +51,6 @@ binary_sensor:
       inverted: true
     filters:
       - delayed_off: 50ms
-  - platform: copy
-    source_id: source_binary_sensor
-    name: "Copy of source_binary_sensor"
 
 sensor:
   - id: temperature
