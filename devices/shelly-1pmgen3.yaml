@@ -107,7 +107,6 @@ binary_sensor:
         - switch.turn_off: relay
 
 sensor:
-
   - id: temperature
     name: Device Temperature
     platform: ntc
@@ -136,8 +135,8 @@ sensor:
     uart_id: bl0942_uart
     line_frequency: 60Hz
     update_interval: 1s
-  # voltage_reference: # Recommend calibrating the voltage sensor for accurate power/energy readings.
-    current_reference: # Current sensor must be calibrated for the safety shutdown to respond correctly!
+    #voltage_reference: # Recommend calibrating the voltage sensor for accurate power/energy readings.
+    #current_reference: # Current sensor must be calibrated for the safety shutdown to respond correctly!
     voltage:
       name: Voltage
       id: sensor_voltage
