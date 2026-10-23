@@ -8,6 +8,8 @@ esp8266:
   early_pin_init: false
   restore_from_flash: false # Set to true to use one of the switch's RESTORE_X restore_mode options
 
+logger:
+
 binary_sensor:
   - platform: gpio
     pin:
