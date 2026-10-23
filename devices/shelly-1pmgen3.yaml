@@ -28,11 +28,6 @@ uart:
   baud_rate: 9600
   stop_bits: 1
 
-switch:
-  - id: relay_output
-    platform: gpio
-    pin: GPIO4
-
 binary_sensor:
   - id: switch
     name: Switch
