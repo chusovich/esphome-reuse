@@ -21,10 +21,12 @@ uart:
   baud_rate: 9600
   stop_bits: 1
 
-output:
+switch:
   - id: relay
     platform: gpio
     pin: GPIO4
+    # use internal to keep it from being exposed to home assistant
+    internal: true
 
 binary_sensor:
   - platform: template
