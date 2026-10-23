@@ -23,18 +23,19 @@ uart:
 
 output:
   - id: relay
+    name: "Output Relay"
     platform: gpio
     pin: GPIO4
 
 binary_sensor:
   - id: wall_switch
-    name: Wall Switch
+    name: "Wall Switch"
     platform: gpio
     pin: GPIO10
     filters:
       - delayed_off: 50ms       
   - id: onboard_button
-    name: Onboard Button
+    name: "Onboard Button"
     platform: gpio
     pin: 
       number: GPIO1
