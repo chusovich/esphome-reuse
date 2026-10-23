@@ -1,6 +1,6 @@
 sensor:
   - platform: ntc
-    name: ${sensor_name_}
+    name: ${sensor_name}
     id: ntc_sensor_${sensor_id}
     sensor: resistance_sensor
     calibration:
