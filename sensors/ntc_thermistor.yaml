@@ -9,7 +9,7 @@ sensor:
       reference_resistance: 10kOhm
   - platform: resistance
     id: resistance_sensor_${sensor_id}
-    sensor: adc_sensor
+    sensor: adc_sensor_${sensor_id}
     configuration: DOWNSTREAM
     resistor: 10kOhm
   - platform: adc
