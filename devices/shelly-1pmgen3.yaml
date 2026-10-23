@@ -28,20 +28,6 @@ uart:
   baud_rate: 9600
   stop_bits: 1
 
-binary_sensor:
-  - id: switch
-    name: Switch
-    platform: gpio
-    pin: GPIO10
-    filters:
-      - delayed_off: 50ms
-  - id: button
-    name: Button
-    platform: gpio
-    pin: GPIO1
-    filters:
-      - delayed_off: 50ms
-
 output:
   - platform: gpio
     pin: GPIO4
@@ -87,6 +73,20 @@ switch:
             state: OFF
 
 binary_sensor:
+  - id: switch
+    name: Switch
+    platform: gpio
+    pin: GPIO10
+    filters:
+      - delayed_off: 50ms
+      
+  - id: button
+    name: Button
+    platform: gpio
+    pin: GPIO1
+    filters:
+      - delayed_off: 50ms
+
   - id: error_overtemp
     name: Overheating
     device_class: problem
