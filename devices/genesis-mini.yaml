@@ -1,0 +1,39 @@
+esphome:
+  name: ${device_name}
+  friendly_name: ${device_name}
+  comment: "Axiometa Genesis Mini"
+
+# ESP32-S3-MINI-N4R2 (4 MB flash + 2 MB PSRAM)
+esp32:
+  variant: esp32s3
+  flash_size: 4MB
+  framework:
+    type: esp-idf
+    
+psram:
+  mode: quad
+  speed: 40MHz
+
+logger:
+
+light:
+  - platform: esp32_rmt_led_strip
+    name: "Onboard Pixel LED"
+    id: genesis_mini_onboad_pixel  
+    channel_colors: GRB
+    pin: GPIO21
+    num_leds: 1
+    chipset: ws2812
+  
+binary_sensor:
+  - platform: gpio
+    name: "Onboard Button"
+    pin:
+      number: GPIO0
+      mode:
+        input: true
+      inverted: true
+    filters:
+      - delayed_on: 10ms
+      - delayed_off: 10ms
+  
