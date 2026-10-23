@@ -38,5 +38,6 @@ binary_sensor:
 text_sensor:
   - platform: version
     name: "ESPHome Version"
-    hide_timestamp: true
     entity_category: diagnostic
+    hide_timestamp: true
+    hide_hash: true
