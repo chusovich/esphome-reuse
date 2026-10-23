@@ -1,5 +1,4 @@
 # Wi-Fi
-# https://esphome.io/components/wifi/
 wifi:  
   networks:
     - ssid: ${wifi_ssid}
@@ -13,7 +12,6 @@ wifi:
   ap: {}
 
 # Fallback Wi-Fi configuration portal
-# https://esphome.io/components/captive_portal/
 captive_portal:
 
 # Wi-Fi diagnostics
@@ -25,8 +23,8 @@ sensor:
     entity_category: diagnostic
 
   - platform: copy
-    source_id: wifi_signal_db
     name: "WiFi Signal Percent"
+    source_id: wifi_signal_db
     filters:
       - lambda: return min(max(2 * (x + 100.0), 0.0), 100.0);
     unit_of_measurement: "%"

@@ -16,7 +16,6 @@ output:
     frequency: 1000 hz
     id: pwm_outputg22
     max_power: 0.50
-    # inverted: true
 
 binary_sensor:
   - platform: gpio 
@@ -29,13 +28,11 @@ binary_sensor:
       inverted: true
     on_press:
       - light.toggle: led_strip
-  - platform: status
-    name: "Status"
 
 light:
   - platform: monochromatic
+    name: "LED Strip"
     output: pwm_outputg22
     default_transition_length: 0.5s
     gamma_correct: 1.0
-    name: "LED Strip"
     id: led_strip

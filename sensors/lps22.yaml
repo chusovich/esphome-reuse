@@ -2,11 +2,11 @@ sensor:
   - platform: lps22
     update_interval: ${sensor_update_interval}
     temperature:
-      name: "LPS22 Temperature"
+      name: "Temperature"
       id: lps22_temp
       filters:
         - lambda: return x * (9.0/5.0) + 32.0;
       unit_of_measurement: "°F"
     pressure:
-      name: "LPS22 Pressure"
+      name: "Pressure"
       id: lps22_press

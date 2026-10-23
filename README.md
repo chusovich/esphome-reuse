@@ -3,23 +3,24 @@ all of the .yaml files I use for my ESPHome setup (wifi configs, sensor configs,
 
 I use ESPHome with Home Assistant, both deployed via docker containers.
 
-## Files Descriptions
+## Files
 
-### `device-base.yaml`
-include base config that all devices use:
+### `/core`
+contains the base `core.yaml` config that all devices use:
 - api setup
 - ota updates
 - web server
 - uptime sensor
 
-### `wifi.yaml` / `ethernet.yaml`
-the base config for a wifi or ethernet connected devices
+### `/networking`
+the base config for a WiFi or ethernet connected devices
 
 ### `/devices`
 - `atoms3-pwm.yaml`: led strip controller
 - `sonoff-ifan04.yaml`: Sonoff smart fan controller
-- `sonoff-s31.yaml: Sonoff smart plug
+- `sonoff-s31.yaml`: Sonoff smart plug
 - `sonoff-s31-lite.yaml`: Sonoff smart plug w/o power monitoring
+- `shelly-1pmgen3.yaml`: Shelly smart switch w/ power monitoring
 
 ### `/sensors`
 - `aht2x.yaml`: temperature and humidity sensor
