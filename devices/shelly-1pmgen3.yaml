@@ -29,7 +29,7 @@ uart:
   stop_bits: 1
 
 switch:
-  - id: relay
+  - id: relay_output
     platform: gpio
     pin: GPIO4
 
