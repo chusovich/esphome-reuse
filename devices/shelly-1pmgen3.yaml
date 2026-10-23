@@ -31,6 +31,7 @@ switch:
 binary_sensor:
   - platform: template
     name: "Relay Status"
+    icon: "mdi:electric-switch"
     lambda: |-
       if (id(relay).state == 1) {
         // Relay is closed.
