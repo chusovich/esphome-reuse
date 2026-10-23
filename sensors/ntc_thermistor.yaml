@@ -2,7 +2,7 @@ sensor:
   - platform: ntc
     name: ${sensor_name}
     id: ntc_sensor_${sensor_id}
-    sensor: resistance_sensor
+    sensor: resistance_sensor_${sensor_id}
     calibration:
       b_constant: 3950
       reference_temperature: 25°C
