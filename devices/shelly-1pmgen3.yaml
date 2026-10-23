@@ -28,23 +28,6 @@ uart:
   baud_rate: 9600
   stop_bits: 1
 
-binary_sensor:
-  - id: extenal_switch
-    name: External Switch
-    platform: gpio
-    pin: GPIO10
-    filters:
-      - delayed_off: 50ms
-
-  - id: button
-    name: Button
-    platform: gpio
-    pin: GPIO1
-    filters:
-      - delayed_off: 50ms
-    on_press:
-      - switch.toggle: relay
-
 output:
   - platform: gpio
     pin: GPIO4
@@ -124,6 +107,7 @@ binary_sensor:
         - switch.turn_off: relay
 
 sensor:
+
   - id: temperature
     name: Device Temperature
     platform: ntc
@@ -152,8 +136,8 @@ sensor:
     uart_id: bl0942_uart
     line_frequency: 60Hz
     update_interval: 1s
-    #voltage_reference: # Recommend calibrating the voltage sensor for accurate power/energy readings.
-    #current_reference: # Current sensor must be calibrated for the safety shutdown to respond correctly!
+  # voltage_reference: # Recommend calibrating the voltage sensor for accurate power/energy readings.
+    current_reference: # Current sensor must be calibrated for the safety shutdown to respond correctly!
     voltage:
       name: Voltage
       id: sensor_voltage
@@ -175,8 +159,3 @@ sensor:
       device_class: energy
       state_class: total_increasing
       accuracy_decimals: 3
-
-status_led:
-  pin:
-    number: GPIO0
-    inverted: true
