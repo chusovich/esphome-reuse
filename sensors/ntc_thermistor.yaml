@@ -12,7 +12,6 @@ sensor:
     sensor: adc_sensor
     configuration: DOWNSTREAM
     resistor: 10kOhm
-    name: Resistance Sensor
   - platform: adc
     id: adc_sensor_${sensor_id}
     pin: ${adc_pin}
