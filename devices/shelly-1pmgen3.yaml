@@ -27,10 +27,16 @@ output:
     pin: GPIO4
 
 binary_sensor:
-  - platform: copy
-    id: relay_state
-    source_id: relay
-    name: "Relay State"
+  - platform: template
+    name: "Relay Status"
+    lambda: |-
+      if (id(relay).state == 1) {
+        // Relay is closed.
+        return true;
+      } else {
+        // Relay is open.
+        return false;
+      }
   - id: wall_switch
     name: "Wall Switch"
     platform: gpio
