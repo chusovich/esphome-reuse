@@ -23,7 +23,6 @@ uart:
 
 output:
   - id: relay
-    name: "Output Relay"
     platform: gpio
     pin: GPIO4
 
