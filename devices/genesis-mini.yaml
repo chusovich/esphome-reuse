@@ -17,8 +17,8 @@ logger:
 
 light:
   - platform: esp32_rmt_led_strip
-    name: "Onboard Pixel LED"
-    id: genesis_mini_onboard_pixel  
+    name: "Onboard RGB LED"
+    id: genesis_mini_onboard_rgb_led
     channel_colors: GRB
     pin: GPIO21
     num_leds: 1
@@ -26,10 +26,10 @@ light:
   
 binary_sensor:
   - platform: gpio
-    name: "Onboard Button"
-    id: genesis_mini_onboard_button
+    name: "User Button"
+    id: genesis_mini_user_button
     pin:
-      number: GPIO0
+      number: GPIO45
       mode:
         input: true
       inverted: true
