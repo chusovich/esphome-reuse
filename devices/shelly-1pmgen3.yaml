@@ -23,6 +23,7 @@ uart:
 
 switch:
   - id: relay
+    name: "Relay"
     platform: gpio
     pin: GPIO4
     # use internal to keep it from being exposed to home assistant
