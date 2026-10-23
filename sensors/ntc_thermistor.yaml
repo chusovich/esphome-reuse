@@ -8,10 +8,12 @@ sensor:
       reference_temperature: 25°C
       reference_resistance: 10kOhm
   - platform: resistance
+    name: Resistance Sensor ${sensor_id}
     id: resistance_sensor_${sensor_id}
     sensor: adc_sensor_${sensor_id}
     configuration: DOWNSTREAM
     resistor: 10kOhm
   - platform: adc
+    name: ADC Sensor ${sensor_id}
     id: adc_sensor_${sensor_id}
     pin: ${adc_pin}
