@@ -27,6 +27,7 @@ light:
 binary_sensor:
   - platform: gpio
     name: "Onboard Button"
+    id: genesis_mini_onboad_button
     pin:
       number: GPIO0
       mode:
