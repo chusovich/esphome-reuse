@@ -27,6 +27,10 @@ output:
     pin: GPIO4
 
 binary_sensor:
+  - platform: copy
+    id: relay_state
+    source_id: relay
+    name: "Relay State"
   - id: wall_switch
     name: "Wall Switch"
     platform: gpio
@@ -41,7 +45,10 @@ binary_sensor:
       inverted: true
     filters:
       - delayed_off: 50ms
-        
+  - platform: copy
+    source_id: source_binary_sensor
+    name: "Copy of source_binary_sensor"
+
 sensor:
   - id: temperature
     name: Temperature
