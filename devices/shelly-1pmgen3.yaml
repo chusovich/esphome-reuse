@@ -73,15 +73,15 @@ switch:
             state: OFF
 
 binary_sensor:
-  - id: switch
-    name: Switch
+  - id: external_switch
+    name: External Switch
     platform: gpio
     pin: GPIO10
     filters:
       - delayed_off: 50ms
       
-  - id: button
-    name: Button
+  - id: onboard_button
+    name: Onboard Button
     platform: gpio
     pin: GPIO1
     filters:
