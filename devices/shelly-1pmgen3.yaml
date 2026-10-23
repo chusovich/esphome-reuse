@@ -29,12 +29,13 @@ uart:
   stop_bits: 1
 
 binary_sensor:
-  - id: switch
+  - id: extenal_switch
     name: Switch
     platform: gpio
     pin: GPIO10
     filters:
       - delayed_off: 50ms
+
   - id: button
     name: Button
     platform: gpio
@@ -123,7 +124,6 @@ binary_sensor:
         - switch.turn_off: relay
 
 sensor:
-
   - id: temperature
     name: Device Temperature
     platform: ntc
