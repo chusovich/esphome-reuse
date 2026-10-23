@@ -163,7 +163,7 @@ sensor:
     energy:
       name: Energy
       id: sensor_energy
-      entity_category: diagnostic
+      # entity_category: diagnostic
       device_class: energy
       state_class: total_increasing
       accuracy_decimals: 3
