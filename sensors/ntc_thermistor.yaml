@@ -7,7 +7,8 @@ sensor:
       b_constant: 3950
       reference_temperature: 25°C
       reference_resistance: 10kOhm
-    - lambda: return x * (9.0/5.0) + 32.0;
+    filters:
+      - lambda: return x * (9.0/5.0) + 32.0;
     unit_of_measurement: "°F"
   - platform: resistance
     id: resistance_sensor_${sensor_id}
