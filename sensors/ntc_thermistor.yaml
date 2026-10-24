@@ -17,3 +17,4 @@ sensor:
     name: ADC Sensor ${sensor_id}
     id: adc_sensor_${sensor_id}
     pin: ${adc_pin}
+    attenuation: 12db
