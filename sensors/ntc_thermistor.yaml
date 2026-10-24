@@ -5,7 +5,7 @@ sensor:
     sensor: resistance_sensor_${sensor_id}
     calibration:
       b_constant: 3950
-      reference_temperature: 77°F
+      reference_temperature: 25°C
       reference_resistance: 10kOhm
   - platform: resistance
     id: resistance_sensor_${sensor_id}
