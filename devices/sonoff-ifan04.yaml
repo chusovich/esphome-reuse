@@ -1,5 +1,5 @@
 esphome:
-  name: ifan04
+  name: sonoff-ifan04
   comment: "Sonoff iFan04"
   on_boot:
     - priority: 600
