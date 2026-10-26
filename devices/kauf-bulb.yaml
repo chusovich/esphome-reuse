@@ -61,3 +61,59 @@ light:
     forced_hash: 2723974766
     forced_addr: 52
     restore_mode: RESTORE_DEFAULT_ON
+
+# https://esphome.io/guides/automations.html#script-component
+script:
+  - id: script_save_changes
+    mode: restart
+    then:
+      - delay: 3s
+      - lambda: global_preferences->sync();
+
+select:
+  # default light state on boot
+  - platform: template
+    name: Power On State
+    id: select_boot_state
+    optimistic: true
+    options:
+      - "Restore Power Off State"
+      - "Always On - Last Value"
+      - "Always On - Bright White"
+      - "Always Off"
+      - "Invert State"
+    # defaulting to always on is nice so you know new bulbs are working
+    initial_option: Always On - Last Value
+    restore_value: true
+    icon: mdi:restart-alert
+    on_value:
+      - lambda: |-
+          if (x == "Restore Power Off State") {
+            kauf_light->set_save_enabled(true);
+            kauf_light->set_state_callback([](light::LightStateRTCState &state, bool restored) {
+              if (!restored)
+                state.state = true;
+            });
+          } else if (x == "Always On - Last Value") {
+            kauf_light->set_save_enabled(true);
+            kauf_light->set_state_callback([](light::LightStateRTCState &state, bool) { state.state = true; });
+          } else if (x == "Always On - Bright White") {
+            kauf_light->set_save_enabled(false);
+            kauf_light->set_state_callback([](light::LightStateRTCState &state, bool) { state.state = true; });
+          } else if (x == "Always Off") {
+            kauf_light->set_save_enabled(true);
+            kauf_light->set_state_callback([](light::LightStateRTCState &state, bool) { state.state = false; });
+          } else if (x == "Invert State") {
+            kauf_light->set_save_enabled(true);
+            kauf_light->set_state_callback([](light::LightStateRTCState &state, bool restored) {
+              state.state = restored ? !state.state : true;
+            });
+          }
+
+          // The select restores before the light's setup. Only save immediately for a user-initiated runtime change.
+          if (kauf_light->is_in_loop_state())
+            kauf_light->save_remote_values_();
+      - script.execute: script_save_changes
+    entity_category: config
+    forced_hash: 3524332562
+    forced_addr: 64
