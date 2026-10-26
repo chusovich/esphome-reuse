@@ -1,3 +1,7 @@
+# Append last 3 bytes of MAC Address to esphome name
+esphome:
+  name_add_mac_suffix: true
+
 # Home Assistant API
 api:
   encryption:
