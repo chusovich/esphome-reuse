@@ -1,6 +1,5 @@
 esphome:
-  name: ${device_name}
-  friendly_name: ${device_name}
+  name: ifan04
   comment: "Sonoff iFan04"
   on_boot:
     - priority: 600
