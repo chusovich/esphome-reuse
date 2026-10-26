@@ -16,6 +16,7 @@ web_server:
   auth:
     username: ${web_server_username}
     password: ${web_server_password}
+    type: digest
 
 # Prometheus Exporter
 prometheus:
