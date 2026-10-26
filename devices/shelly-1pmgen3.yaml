@@ -1,6 +1,5 @@
 esphome:
   name: ${device_name}
-  friendly_name: ${device_name}
   comment: "Shelly 1PM Gen3"
 
 esp32:
