@@ -3,7 +3,7 @@ esp32:
   board: esp32-c3-devkitm-1
   flash_size: 8MB
   flash_mode: dio
-  partitions: shelly-pmmini-gen3.csv
+  partitions: support/partitions/shelly-pmmini-gen3.csv
   framework:
     type: esp-idf
     sdkconfig_options:
