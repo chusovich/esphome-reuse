@@ -1,6 +1,5 @@
 esphome:
-  name: ${device_name}
-  friendly_name: ${device_name}
+  name: s31
   comment: "Sonoff S31 Lite"
   
 esp8266:
