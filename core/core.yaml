@@ -16,6 +16,7 @@ web_server:
   auth:
     username: ${web_server_username}
     password: ${web_server_password}
+    # setting type to digest ahead of this being made the default in esphome v2027.3
     type: digest
 
 # Prometheus Exporter
