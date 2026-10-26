@@ -3,7 +3,8 @@ esphome:
 
 esp8266:
   board: esp07s
-
+  restore_from_flash: true
+  
 logger:
   
 output:
@@ -33,92 +34,45 @@ output:
     id: pwm_ww
     max_power: .9
 
-external_components:
-  - source:
-      type: git
-      url: https://github.com/KaufHA/common
-      ref: v2026.10.0
-    refresh: 1min
-  - source:
-      type: git
-      url: https://github.com/KaufHA/kauf-rgbww-bulbs
-      ref: c2026.10.0
-    refresh: 1min
+# external_components:
+#   - source:
+#       type: git
+#       url: https://github.com/KaufHA/common
+#       ref: v2026.10.0
+#     refresh: 1min
+#   - source:
+#       type: git
+#       url: https://github.com/KaufHA/kauf-rgbww-bulbs
+#       ref: c2026.10.0
+#     refresh: 1min
     
+# light:
+#   # Main RGBWW light
+#   - platform: kauf_rgbww
+#     id: kauf_light
+#     default_transition_length: 250ms
+#     name: "Smart Bulb"
+#     red: pwm_red
+#     green: pwm_green
+#     blue: pwm_blue
+#     warm_white: pwm_ww
+#     cold_white: pwm_cw
+#     warm_white_color_temperature: 2500 Kelvin
+#     cold_white_color_temperature: 6600 Kelvin
+#     forced_hash: 2723974766
+#     forced_addr: 52
+
 light:
-  # Main RGBWW light
-  - platform: kauf_rgbww
+  - platform: rgbww
+    name: "Bulb"
     id: kauf_light
-    default_transition_length: 250ms
-    name: "Smart Bulb"
     red: pwm_red
     green: pwm_green
     blue: pwm_blue
-    warm_white: pwm_ww
     cold_white: pwm_cw
-    warm_white_color_temperature: 2500 Kelvin
-    cold_white_color_temperature: 6600 Kelvin
-    forced_hash: 2723974766
-    forced_addr: 52
-    # Restore color/brightness as saved, but always come back on
-    restore_state:
-      state: ON
-
-select:
-  # default light state on boot
-  - platform: template
-    name: Power On State
-    id: select_boot_state
-    optimistic: true
-    options:
-      - "Restore Power Off State"
-      - "Always On - Last Value"
-      - "Always On - Bright White"
-      - "Always Off"
-      - "Invert State"
-    # defaulting to always on is nice so you know new bulbs are working
-    initial_option: Always On - Last Value
-    restore_value: true
-    icon: mdi:restart-alert
-    on_value:
-      - lambda: |-
-          if (x == "Restore Power Off State") {
-            kauf_light->set_save_enabled(true);
-            kauf_light->set_state_callback([](light::LightStateRTCState &state, bool restored) {
-              if (!restored)
-                state.state = true;
-            });
-          } else if (x == "Always On - Last Value") {
-            kauf_light->set_save_enabled(true);
-            kauf_light->set_state_callback([](light::LightStateRTCState &state, bool) { state.state = true; });
-          } else if (x == "Always On - Bright White") {
-            kauf_light->set_save_enabled(false);
-            kauf_light->set_state_callback([](light::LightStateRTCState &state, bool) { state.state = true; });
-          } else if (x == "Always Off") {
-            kauf_light->set_save_enabled(true);
-            kauf_light->set_state_callback([](light::LightStateRTCState &state, bool) { state.state = false; });
-          } else if (x == "Invert State") {
-            kauf_light->set_save_enabled(true);
-            kauf_light->set_state_callback([](light::LightStateRTCState &state, bool restored) {
-              state.state = restored ? !state.state : true;
-            });
-          }
-
-          // The select restores before the light's setup. Only save immediately for a user-initiated runtime change.
-          if (kauf_light->is_in_loop_state())
-            kauf_light->save_remote_values_();
-      - script.execute: script_save_changes
-    entity_category: config
-    forced_hash: 3524332562
-    forced_addr: 64
-
-script:
-  - id: script_save_changes
-    mode: restart
-    then:
-      - delay: 3s
-      - lambda: global_preferences->sync();
-
-  - id: script_do_nothing
-    then:
-      lambda: return;
+    warm_white: pwm_ww
+    cold_white_color_temperature: 6600 K
+    warm_white_color_temperature: 2500 K
+    restore_mode: RESTORE_DEFAULT_ON
+    # constant_brightness: true
+    # color_interlock: true
