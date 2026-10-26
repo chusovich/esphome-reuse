@@ -1,6 +1,5 @@
 esphome:
-  name: ${device_name}
-  friendly_name: ${device_name}
+  name: atoms3
   comment: "M5 Stack AtomS3 PWM Base"
 
 esp32:
