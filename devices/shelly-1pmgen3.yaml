@@ -1,5 +1,5 @@
 esphome:
-  name: ${device_name}
+  name: shelly-1pmgen3
   comment: "Shelly 1PM Gen3"
 
 esp32:
