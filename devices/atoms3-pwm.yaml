@@ -9,6 +9,10 @@ esp32:
 
 logger:
 
+# Normal wifi power resulted in bugs on boots
+wifi:
+  output_power: 15dB  # default is 20dB
+
 output:
   - platform: ledc
     pin: GPIO5
