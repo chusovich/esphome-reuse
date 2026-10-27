@@ -1,8 +1,11 @@
+esphome:
+  name: shelly-1gen3
+  
 esp32:
   variant: ESP32C3
   board: esp32-c3-devkitm-1
   flash_size: 8MB
-  partitions: support/partitions/shelly-1mini-gen3.csv
+  partitions: support/partitions/S1G3-stock.csv        # copy from partitions/ in this repository
   framework:
     type: esp-idf
     sdkconfig_options:
