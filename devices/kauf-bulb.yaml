@@ -1,0 +1,78 @@
+esphome:
+  comment: "Kauf ${kauf_bulb_model} Smart Bulb"
+
+esp8266:
+  board: esp07s
+  restore_from_flash: true
+  
+logger:
+  
+output:
+  - platform: esp8266_pwm
+    pin: GPIO4
+    frequency: 250 Hz
+    id: pwm_red
+    max_power: .9
+  - platform: esp8266_pwm
+    pin: GPIO12
+    frequency: 250 Hz
+    id: pwm_green
+    max_power: .9
+  - platform: esp8266_pwm
+    pin: GPIO14
+    frequency: 250 Hz
+    id: pwm_blue
+    max_power: .9
+  - platform: esp8266_pwm
+    pin: GPIO5
+    frequency: 250 Hz
+    id: pwm_cw
+    max_power: .9
+  - platform: esp8266_pwm
+    pin: GPIO13
+    frequency: 250 Hz
+    id: pwm_ww
+    max_power: .9
+
+# external_components:
+#   - source:
+#       type: git
+#       url: https://github.com/KaufHA/common
+#       ref: v2026.10.0
+#     refresh: 1min
+#   - source:
+#       type: git
+#       url: https://github.com/KaufHA/kauf-rgbww-bulbs
+#       ref: c2026.10.0
+#     refresh: 1min
+    
+# light:
+#   # Main RGBWW light
+#   - platform: kauf_rgbww
+#     id: kauf_light
+#     default_transition_length: 250ms
+#     name: "Smart Bulb"
+#     red: pwm_red
+#     green: pwm_green
+#     blue: pwm_blue
+#     warm_white: pwm_ww
+#     cold_white: pwm_cw
+#     warm_white_color_temperature: 2500 Kelvin
+#     cold_white_color_temperature: 6600 Kelvin
+#     forced_hash: 2723974766
+#     forced_addr: 52
+
+light:
+  - platform: rgbww
+    name: "Bulb"
+    id: kauf_light
+    red: pwm_red
+    green: pwm_green
+    blue: pwm_blue
+    cold_white: pwm_cw
+    warm_white: pwm_ww
+    cold_white_color_temperature: 6600 K
+    warm_white_color_temperature: 2500 K
+    restore_mode: RESTORE_DEFAULT_ON
+    # constant_brightness: true
+    # color_interlock: true
