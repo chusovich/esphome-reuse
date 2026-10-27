@@ -1,6 +1,6 @@
 # S1G3 stock partition table (read from the official 2.0.1 package, partition-table.bin at 0xf000).
 # Only used so ESPHome builds against the same layout the device really has; the table in flash stays Shelly's.
-# Set CONFIG_PARTITION_TABLE_OFFSET: "0xf000" in the ESPHome config (ESP-IDF's default is 0x8000).
+# Set CONFIG_PARTITION_TABLE_OFFSET: '0xf000' in the ESPHome config (ESP-IDF's default is 0x8000).
 # Name,    Type, SubType, Offset,   Size,     Flags
 otadata, data, ota, 0x11000, 0x2000,
 nvs, data, nvs, 0x14000, 0xc000,
