@@ -5,7 +5,7 @@ esp32:
   variant: ESP32C3
   board: esp32-c3-devkitm-1
   flash_size: 8MB
-  partitions: support/partitions/shelly-1-gen3.csv        # copy from partitions/ in this repository
+  partitions: support/partitions/shelly-1-gen3.csv
   framework:
     type: esp-idf
     sdkconfig_options:
