@@ -15,6 +15,17 @@ ota:
   - platform: esphome
     allow_partition_access: true
 
+uart:
+  id: uart_0
+  tx_pin: GPIO6
+  rx_pin:
+    number: GPIO7
+    mode:
+      pullup: true
+      input: true
+  baud_rate: 9600
+  stop_bits: 1
+
 binary_sensor:
   - platform: gpio
     id: button
@@ -29,15 +40,15 @@ binary_sensor:
 sensor:
   - platform: ntc
     id: temperature
-    sensor: temp_resistance_reading
     name: "Temperature"
+    sensor: temp_resistance_reading
     unit_of_measurement: "°C"
     accuracy_decimals: 1
-    icon: "mdi:thermometer"
     calibration:
       b_constant: 3350
       reference_resistance: 10kOhm
       reference_temperature: 298.15K
+    #icon: "mdi:thermometer"
   - platform: resistance
     id: temp_resistance_reading
     sensor: temp_analog_reading
@@ -51,43 +62,28 @@ sensor:
   - platform: bl0942
     uart_id: uart_0
     voltage:
+      id: voltage
       name: "Voltage"
-      id: bvoltage
-      icon: mdi:alpha-v-circle-outline
+      #icon: mdi:alpha-v-circle-outline
       device_class: voltage
     current:
+      id: current
       name: "Current"
-      id: bcurrent
-      icon: mdi:alpha-a-circle-outline
-      device_class: current
+      #icon: mdi:alpha-a-circle-outline
     power:
       name: "Power"
-      id: bpower
-      icon: mdi:transmission-tower
-      device_class: power
+      id: power
+      #icon: mdi:transmission-tower
     energy:
+      id: energy
       name: "Energy"
-      id: benergy
-      icon: mdi:lightning-bolt
-      device_class: energy
+      #icon: mdi:lightning-boltdevice class
     frequency:
+      id: frequency
       name: "Frequency"
-      id: bfreq
       accuracy_decimals: 2
-      icon: mdi:cosine-wave
-      device_class: frequency
+      #icon: mdi:cosine-wave
     update_interval: 5s
-
-uart:
-  id: uart_0
-  tx_pin: GPIO6
-  rx_pin:
-    number: GPIO7
-    mode:
-      pullup: true
-      input: true
-  baud_rate: 9600
-  stop_bits: 1
 
 status_led:
   pin:
