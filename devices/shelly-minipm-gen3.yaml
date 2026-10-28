@@ -17,6 +17,7 @@ ota:
 
 binary_sensor:
   - platform: gpio
+    id: button
     name: "Button"
     pin:
       number: 1
@@ -27,6 +28,7 @@ binary_sensor:
 
 sensor:
   - platform: ntc
+    id: temperature
     sensor: temp_resistance_reading
     name: "Temperature"
     unit_of_measurement: "°C"
