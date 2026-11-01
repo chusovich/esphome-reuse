@@ -23,14 +23,15 @@ logger:
 
 status_led:
   pin:
-    number: GPIO0
+    number: GPIO6
     inverted: true
 
 switch:
-  - id: relay
+  # Relay
+  - platform: gpio
+    id: relay
     name: "Relay"
-    platform: gpio
-    pin: GPIO4
+    pin: GPIO7
     # use internal to keep it from being exposed to home assistant
     internal: true
 
@@ -46,20 +47,21 @@ binary_sensor:
         // Relay is open.
         return false;
       }
-  - id: wall_switch
+  # External wall switch
+  - platform: gpio
+    id: wall_switch
     name: "Wall Switch"
-    platform: gpio
-    pin: GPIO10
-    filters:
-      - delayed_off: 50ms       
-  - id: onboard_button
-    name: "Onboard Button"
-    platform: gpio
-    pin: 
-      number: GPIO1
-      inverted: true
-    filters:
-      - delayed_off: 50ms
+    pin:
+      number: GPIO3
+      mode: INPUT
+      inverted: true   
+  # Physical button on Shelly
+  - platform: gpio
+    id: button
+    name: "Button"
+    pin:
+      number: GPIO0
+      mode: INPUT_PULLUP
 
 sensor:
   - id: temperature
