@@ -17,3 +17,68 @@ esp32:
 ota:
   - platform: esphome
     allow_partition_access: true
+
+logger:
+
+status_led:
+  pin:
+    number: GPIO0
+    inverted: true
+
+switch:
+  - id: relay
+    name: "Relay"
+    platform: gpio
+    pin: GPIO4
+    # use internal to keep it from being exposed to home assistant
+    internal: true
+
+binary_sensor:
+  - platform: template
+    name: "Relay Status"
+    icon: "mdi:electric-switch"
+    lambda: |-
+      if (id(relay).state == 1) {
+        // Relay is closed.
+        return true;
+      } else {
+        // Relay is open.
+        return false;
+      }
+  - id: wall_switch
+    name: "Wall Switch"
+    platform: gpio
+    pin: GPIO10
+    filters:
+      - delayed_off: 50ms       
+  - id: onboard_button
+    name: "Onboard Button"
+    platform: gpio
+    pin: 
+      number: GPIO1
+      inverted: true
+    filters:
+      - delayed_off: 50ms
+
+sensor:
+  - id: temperature
+    name: Temperature
+    platform: ntc
+    sensor: temperature_sensor_resistance
+    icon: mdi:thermometer
+    entity_category: diagnostic
+    unit_of_measurement: °C
+    accuracy_decimals: 1
+    calibration:
+      b_constant: 3350
+      reference_resistance: 10kOhm
+      reference_temperature: 25°C
+  - id: temperature_sensor_resistance
+    platform: resistance
+    sensor: temperature_sensor_voltage
+    configuration: DOWNSTREAM
+    resistor: 10kOhm
+  - id: temperature_sensor_voltage
+    platform: adc
+    pin: GPIO3
+    attenuation: 12db
