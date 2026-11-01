@@ -1,5 +1,5 @@
 esphome:
-  name: shelly-1-gen3
+  name: shelly-1-gen3-${id}
   comment: Shelly 1 Gen3
   
 esp32:
