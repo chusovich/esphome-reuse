@@ -37,6 +37,7 @@ switch:
 
 binary_sensor:
   - platform: template
+    id: relay_status
     name: "Relay Status"
     icon: "mdi:electric-switch"
     lambda: |-
