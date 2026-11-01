@@ -56,12 +56,14 @@ binary_sensor:
       mode: INPUT
       inverted: true   
   # Physical button on Shelly
-  - platform: gpio
-    id: button
-    name: "Button"
-    pin:
+  - id: onboard_button
+    name: "Onboard Button"
+    platform: gpio
+    pin: 
       number: GPIO1
-      mode: INPUT_PULLUP
+      inverted: true
+    filters:
+      - delayed_off: 50ms
 
 sensor:
   - id: temperature
