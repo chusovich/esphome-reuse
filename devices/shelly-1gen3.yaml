@@ -83,5 +83,5 @@ sensor:
     resistor: 10kOhm
   - id: temperature_sensor_voltage
     platform: adc
-    pin: GPIO3
+    pin: GPIO4
     attenuation: 12db
