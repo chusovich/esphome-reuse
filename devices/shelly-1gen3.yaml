@@ -23,7 +23,7 @@ logger:
 
 status_led:
   pin:
-    number: GPIO6
+    number: GPIO0
     inverted: true
 
 switch:
@@ -31,7 +31,7 @@ switch:
   - platform: gpio
     id: relay
     name: "Relay"
-    pin: GPIO7
+    pin: GPIO4
     # use internal to keep it from being exposed to home assistant
     internal: true
 
@@ -52,7 +52,7 @@ binary_sensor:
     id: wall_switch
     name: "Wall Switch"
     pin:
-      number: GPIO3
+      number: GPIO10
       mode: INPUT
       inverted: true   
   # Physical button on Shelly
@@ -60,7 +60,7 @@ binary_sensor:
     id: button
     name: "Button"
     pin:
-      number: GPIO0
+      number: GPIO1
       mode: INPUT_PULLUP
 
 sensor:
@@ -83,5 +83,5 @@ sensor:
     resistor: 10kOhm
   - id: temperature_sensor_voltage
     platform: adc
-    pin: GPIO4
+    pin: GPIO3
     attenuation: 12db
