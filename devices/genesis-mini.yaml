@@ -1,5 +1,5 @@
 esphome:
-  name: genesis-mini-${index}
+  name: genesis-mini
   comment: "Axiometa Genesis Mini"
 
 # ESP32-S3-MINI-N4R2 (4 MB flash + 2 MB PSRAM)
