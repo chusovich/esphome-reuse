@@ -90,20 +90,20 @@ sensor:
     # current_reference: # Current sensor must be calibrated for the safety shutdown to respond correctly!
     voltage:
       name: Voltage
-      id: sensor_voltage
+      id: voltage
     current:
       name: Current
-      id: sensor_current
+      id: current
     power:
       name: Power
-      id: sensor_power
+      id: power
     frequency:
       name: Frequency
-      id: sensor_frequency
+      id: frequency
       accuracy_decimals: 2
     energy:
       name: Energy
-      id: sensor_energy
+      id: energy
       entity_category: diagnostic
       device_class: energy
       state_class: total_increasing

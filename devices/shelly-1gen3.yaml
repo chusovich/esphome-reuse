@@ -1,0 +1,90 @@
+esphome:
+  name: shelly-1gen3-${id}
+  comment: Shelly 1 Gen3
+  
+esp32:
+  variant: ESP32C3
+  board: esp32-c3-devkitm-1
+  flash_size: 8MB
+  partitions: support/partitions/shelly-1-gen3.csv
+  framework:
+    type: esp-idf
+    sdkconfig_options:
+      COMPILER_OPTIMIZATION_SIZE: y
+      CONFIG_PARTITION_TABLE_OFFSET: "0xf000"
+    advanced:
+      enable_ota_rollback: false
+
+ota:
+  - platform: esphome
+    allow_partition_access: true
+
+logger:
+
+status_led:
+  pin:
+    number: GPIO0
+    inverted: true
+
+switch:
+  # Relay
+  - platform: gpio
+    id: relay
+    name: "Relay"
+    pin: GPIO4
+    # use internal to keep it from being exposed to home assistant
+    internal: true
+
+binary_sensor:
+  - platform: template
+    id: relay_status
+    name: "Relay Status"
+    icon: "mdi:electric-switch"
+    lambda: |-
+      if (id(relay).state == 1) {
+        // Relay is closed.
+        return true;
+      } else {
+        // Relay is open.
+        return false;
+      }
+  # External wall switch
+  - platform: gpio
+    id: wall_switch
+    name: "Wall Switch"
+    pin:
+      number: GPIO10
+      mode: INPUT
+      inverted: true   
+  # Physical button on Shelly
+  - id: onboard_button
+    name: "Onboard Button"
+    platform: gpio
+    pin: 
+      number: GPIO1
+      inverted: true
+    filters:
+      - delayed_off: 50ms
+
+sensor:
+  - id: temperature
+    name: Temperature
+    platform: ntc
+    sensor: temperature_sensor_resistance
+    icon: mdi:thermometer
+    entity_category: diagnostic
+    unit_of_measurement: °C
+    accuracy_decimals: 1
+    calibration:
+      b_constant: 3350
+      reference_resistance: 10kOhm
+      reference_temperature: 25°C
+  - id: temperature_sensor_resistance
+    platform: resistance
+    sensor: temperature_sensor_voltage
+    configuration: DOWNSTREAM
+    resistor: 10kOhm
+  - id: temperature_sensor_voltage
+    platform: adc
+    pin: GPIO3
+    attenuation: 12db
