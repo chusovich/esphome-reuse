@@ -21,6 +21,7 @@ the base config for a WiFi or ethernet connected devices
 - `sonoff-s31.yaml`: Sonoff smart plug
 - `sonoff-s31-lite.yaml`: Sonoff smart plug w/o power monitoring
 - `shelly-1pmgen3.yaml`: Shelly smart switch w/ power monitoring
+- `genesis-mini`: Axiometa's Genesis mini dev board
 
 ### `/sensors`
 - `aht2x.yaml`: temperature and humidity sensor
@@ -28,3 +29,4 @@ the base config for a WiFi or ethernet connected devices
 - `my24hcp.yaml`: Seeed Studio mmWave sensor
 - `sht4x.yaml`: temperature and humdity sensor
 - `veml7700.yaml`: lux sensor
+- `ntc_thermistor`
